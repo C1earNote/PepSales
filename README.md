@@ -77,4 +77,4 @@ Make sure to set the correct credentials in:
 - app/database.py → PostgreSQL
 - app/producer.py and consumer.py → RabbitMQ
 
-# Done by Tanishq Nigam
+# Done by Tanishq Nigam - 22053297
