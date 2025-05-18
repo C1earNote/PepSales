@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notification Sender</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    select, input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #response {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #007bff;
+      background-color: #e7f1ff;
+      border-radius: 4px;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Send Notification</h2>
+
+  <form id="notificationForm">
+    <label for="type">Type:</label>
+    <select id="type" required>
+      <option value="email">Email</option>
+      <option value="sms">SMS</option>
+      <option value="in-app">In-App</option>
+    </select>
+
+    <label for="recipient">Recipient:</label>
+    <input type="text" id="recipient" placeholder="Enter recipient" required />
+
+    <label for="content">Content:</label>
+    <textarea id="content" rows="4" placeholder="Enter notification content" required></textarea>
+
+    <button type="submit">Send Notification</button>
+  </form>
+
+  <div id="response"></div>
+
+  <script>
+    const form = document.getElementById('notificationForm');
+    const responseDiv = document.getElementById('response');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const payload = {
+        type: document.getElementById('type').value,
+        recipient: document.getElementById('recipient').value.trim(),
+        content: document.getElementById('content').value.trim()
+      };
+
+      try {
+        const res = await fetch('http://localhost:8000/send-notification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.detail || 'Unknown error');
+        }
+
+        const data = await res.json();
+        responseDiv.textContent = data.message || 'Notification sent successfully!';
+        responseDiv.style.color = 'green';
+      } catch (err) {
+        responseDiv.textContent = `Error: ${err.message}`;
+        responseDiv.style.color = 'red';
+      }
+    });
+  </script>
+
+</body>
+</html>
