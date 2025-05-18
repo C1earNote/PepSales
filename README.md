@@ -48,8 +48,7 @@ API is available at: http://localhost:8000/docs
 ### 4. **Run the consumer in another terminal**
 
 ```
-python app/consumer.py
-
+python app/worker.py
 ```
 
 This listens to queue and sends notifications
