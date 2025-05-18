@@ -25,26 +25,6 @@ This project is a simple **Notification Service** built with **FastAPI**, **Rabb
 
 ---
 
-## Project Structure
-
-Pepsales/
-│
-├── app/
-│ ├── main.py # FastAPI app with endpoints
-│ ├── producer.py # Publishes messages to RabbitMQ
-│ ├── consumer.py # Consumes and processes notifications
-│ ├── models.py # SQLAlchemy models
-│ └── database.py # DB connection setup
-│
-├── templates/
-│ └── index.html # Simple frontend to send notifications
-│
-├── requirements.txt
-└── README.md
-
-
----
-
 ## How to Test
 
 ### 1. **Run RabbitMQ and PostgreSQL**
