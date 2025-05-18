@@ -1,6 +1,6 @@
 # Notification Service - PepSales
 
-This project is a simple **Notification Service** built with **FastAPI**, **RabbitMQ**, and **PostgreSQL**. It supports queuing and sending of email, SMS, and in-app notifications through a unified API.
+I hope this gives a brief description: This project is a simple **Notification Service** built with **FastAPI**, **RabbitMQ**, and **PostgreSQL**. It supports queuing and sending of email, SMS, and in-app notifications through a unified API.
 
 ---
 
